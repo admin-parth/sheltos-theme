@@ -10,3 +10,8 @@
 
 
 </script>
+<style scoped>
+.main-container{
+  overflow: hidden;
+}
+</style>

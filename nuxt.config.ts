@@ -1,6 +1,20 @@
+import dotenv from 'dotenv';
 
-
+dotenv.config();
 export default defineNuxtConfig({
+  runtimeConfig: {
+    dburl: process.env.MONGODB_URI,
+    dbName: process.env.MONGODB_NAME,
+    public:{
+      apiKey: process.env.FIREBASE_API_KEY,
+      authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+      projectId: process.env.FIREBASE_PROJECT_ID,
+      storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+      messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+      appId: process.env.FIREBASE_APP_ID,
+      measurementId: process.env.FIREBASE_MEASUREMENT_ID,
+    }
+  },
   app: {
     head: {
       link: [
@@ -18,9 +32,9 @@ export default defineNuxtConfig({
         src:'/bootstrap.bundle.min.js'
       }
   ],
-  alias: {
-    pinia: "/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs"
-  },
+  // alias: {
+  //   pinia: "/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs"
+  // },
   modules: ['nuxt-icon','@pinia/nuxt'],
   pinia: {
     autoImports: [
@@ -40,6 +54,18 @@ export default defineNuxtConfig({
     },
     {
       src:'~/plugins/vue-masonry-wall.ts'
+    },
+    {
+      src:'~/plugins/vue-tel-input.ts',
+      mode:'client'
+    },
+    {
+      src:'~/plugins/vue3-otp-input.ts',
+      mode:'client'
+    },
+    {
+      src:'~/plugins/firebase.client.ts',
+      mode:'client'
     }
   ]
 });
